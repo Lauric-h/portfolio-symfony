@@ -1,0 +1,16 @@
+<section class="container">
+    <div class="cards__container">
+
+        {% for skill in skills %}
+            <div class="cards__card">
+                <h2 class="cards__card__title">{{ skill.name }}</h2>
+                <ul>
+                    {% for s in skill.skills %}
+                        <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+                <img class="cards__card__img" src="{{ asset(skill.image) }}" alt="Drawing of percentages">
+            </div>
+        {% endfor %}
+    </div>
+</section>
