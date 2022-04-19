@@ -9,7 +9,7 @@
                         <li>{{ s }}</li>
                     {% endfor %}
                 </ul>
-                <img class="cards__card__img" src="{{ asset(skill.image) }}" alt="Drawing of percentages">
+                <img class="cards__card__img" src="{{ vich_uploader_asset(skill, 'imageFile') }}" alt="Drawing">
             </div>
         {% endfor %}
     </div>

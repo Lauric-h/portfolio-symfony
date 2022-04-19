@@ -22,6 +22,9 @@ class Project
     #[ORM\Column(type: 'array')]
     private $links = [];
 
+    #[ORM\Column(type: 'boolean')]
+    private $isFeatured;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Project
     public function setLinks(array $links): self
     {
         $this->links = $links;
+
+        return $this;
+    }
+
+    public function getIsFeatured(): ?bool
+    {
+        return $this->isFeatured;
+    }
+
+    public function setIsFeatured(bool $isFeatured): self
+    {
+        $this->isFeatured = $isFeatured;
 
         return $this;
     }

@@ -24,7 +24,7 @@ class HomeController extends AbstractController
             'hero' => $heroRepository->find(1),
             'featured' => $featuredRepository->find(1),
             'skills' => $skillRepository->findAll(),
-            'projects' => $projectRepository->findAll()
+            'projects' => $projectRepository->findAll(),
         ]);
     }
 }
