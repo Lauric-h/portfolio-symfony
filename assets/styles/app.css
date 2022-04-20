@@ -164,16 +164,16 @@ h2::after {
     display: block;
 }
 
-.html { fill: #E34F26 }
-.css { fill: #1572B6 }
-.js { fill: #F7DF1E }
-.php { fill: #4479A1 }
-.mysql { fill: #E34F26 }
-.java { fill: #007396 }
-.laravel { fill: #FF2D20 }
-.postman { fill: #FF6C37 }
-.vue { fill: #4FC08D }
-.ghost { fill: #738A94 }
+.HTML { fill: #E34F26 }
+.CSS { fill: #1572B6 }
+.Javascript { fill: #F7DF1E }
+.PHP { fill: #4479A1 }
+.MySQL { fill: #E34F26 }
+.Java { fill: #007396 }
+.Laravel { fill: #FF2D20 }
+.Postman { fill: #FF6C37 }
+.Vue { fill: #4FC08D }
+.Ghost { fill: #738A94 }
 
 /* footer */
 i {

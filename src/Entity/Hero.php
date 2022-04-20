@@ -4,8 +4,13 @@ namespace App\Entity;
 
 use App\Repository\HeroRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: HeroRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Hero
 {
     #[ORM\Id]
@@ -21,6 +26,15 @@ class Hero
 
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
+     *
+     * @var File|null
+     */
+    private ?File $imageFile = null;
 
     public function getId(): ?int
     {
@@ -61,5 +75,24 @@ class Hero
         $this->image = $image;
 
         return $this;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }

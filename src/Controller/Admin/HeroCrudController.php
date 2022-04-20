@@ -4,6 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\Hero;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class HeroCrudController extends AbstractCrudController
 {
@@ -12,14 +16,13 @@ class HeroCrudController extends AbstractCrudController
         return Hero::class;
     }
 
-    /*
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
-            TextField::new('title'),
-            TextEditorField::new('description'),
+            TextEditorField::new('title')->addHtmlContentsToBody(),
+            TextEditorField::new('body'),
+            TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
+            ImageField::new('image')->setBasePath('/uploads/images')->onlyOnIndex(),
         ];
     }
-    */
 }

@@ -6,8 +6,13 @@ use App\Repository\FeaturedRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: FeaturedRepository::class)]
+/**
+ * @Vich\Uploadable
+ */
 class Featured
 {
     #[ORM\Id]
@@ -23,6 +28,18 @@ class Featured
 
     #[ORM\OneToMany(mappedBy: 'featured', targetEntity: Logo::class)]
     private $logos;
+
+    #[ORM\Column(type: 'string', length: 255)]
+    private $image = null;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
+     *
+     * @var File|null
+     */
+    private ?File $imageFile = null;
 
     public function __construct()
     {
@@ -86,5 +103,40 @@ class Featured
         }
 
         return $this;
+    }
+
+    /**
+     * @return ?string
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param ?string $image
+     */
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @param File|null $imageFile
+     */
+    public function setImageFile(?File $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+
+        if (null !== $imageFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
     }
 }

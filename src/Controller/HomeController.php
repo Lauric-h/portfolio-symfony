@@ -21,7 +21,7 @@ class HomeController extends AbstractController
     ): Response
     {
         return $this->render('home/index.html.twig', [
-            'hero' => $heroRepository->find(1),
+            'hero' => $heroRepository->findAll(),
             'featured' => $featuredRepository->find(1),
             'skills' => $skillRepository->findAll(),
             'projects' => $projectRepository->findAll(),

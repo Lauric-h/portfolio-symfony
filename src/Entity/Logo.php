@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\LogoRepository;
 use Doctrine\ORM\Mapping as ORM;
+use JetBrains\PhpStorm\Pure;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -29,15 +30,18 @@ class Logo
      *
      * @var File|null
      */
-    private ?File $imageFile;
+    private ?File $imageFile = null;
 
     #[ORM\Column(type: 'text')]
-    private $svg;
+    private $svg = null;
 
     #[ORM\ManyToOne(targetEntity: Featured::class, inversedBy: 'logos')]
     private $featured;
 
     private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $color;
 
     public function getId(): ?int
     {
@@ -61,7 +65,7 @@ class Logo
         return $this->svg;
     }
 
-    public function setSvg(string $svg): self
+    public function setSvg(?string $svg): self
     {
         $this->svg = $svg;
 
@@ -97,5 +101,21 @@ class Logo
     public function getImageFile(): ?File
     {
         return $this->imageFile;
+    }
+
+    #[Pure] public function __toString(): string {
+        return $this->getName();
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
     }
 }
