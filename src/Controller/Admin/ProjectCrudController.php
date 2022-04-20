@@ -4,6 +4,9 @@ namespace App\Controller\Admin;
 
 use App\Entity\Project;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ArrayField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ProjectCrudController extends AbstractCrudController
 {
@@ -12,14 +15,17 @@ class ProjectCrudController extends AbstractCrudController
         return Project::class;
     }
 
-    /*
+
     public function configureFields(string $pageName): iterable
     {
         return [
-            IdField::new('id'),
             TextField::new('title'),
-            TextEditorField::new('description'),
+            ArrayField::new('goals'),
+            ArrayField::new('links'),
+            AssociationField::new('logos')->setFormTypeOptions([
+                'by_reference' => false,
+            ]),
         ];
     }
-    */
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProjectRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
@@ -24,6 +26,14 @@ class Project
 
     #[ORM\Column(type: 'boolean')]
     private $isFeatured;
+
+    #[ORM\ManyToMany(targetEntity: Logo::class, inversedBy: 'projects')]
+    private $logos;
+
+    public function __construct()
+    {
+        $this->logos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +84,30 @@ class Project
     public function setIsFeatured(bool $isFeatured): self
     {
         $this->isFeatured = $isFeatured;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Logo>
+     */
+    public function getLogos(): Collection
+    {
+        return $this->logos;
+    }
+
+    public function addLogo(Logo $logo): self
+    {
+        if (!$this->logos->contains($logo)) {
+            $this->logos[] = $logo;
+        }
+
+        return $this;
+    }
+
+    public function removeLogo(Logo $logo): self
+    {
+        $this->logos->removeElement($logo);
 
         return $this;
     }
