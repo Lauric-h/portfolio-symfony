@@ -18,7 +18,10 @@
                     <h3>Technologies</h3>
                     <div class="projects__logo">
                         {% for logo in project.logos %}
-                            <img class="card__text__logo" src="{{ vich_uploader_asset(logo, 'imageFile') }}" alt="">
+                            <a href="{{ logo.link }}" class="card__text__logo" target="_blank"><img src="{{
+                                vich_uploader_asset
+                                    (logo, 'imageFile')
+                                }}" alt=""></a>
                         {% endfor %}
                     </div>
                 </div>

@@ -43,7 +43,7 @@ class Logo
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-    private $color;
+    private $link;
 
     #[ORM\ManyToMany(targetEntity: Project::class, mappedBy: 'logos')]
     private $projects;
@@ -117,14 +117,14 @@ class Logo
         return $this->getName();
     }
 
-    public function getColor(): ?string
+    public function getLink(): ?string
     {
-        return $this->color;
+        return $this->link;
     }
 
-    public function setColor(?string $color): self
+    public function setLink(?string $link): self
     {
-        $this->color = $color;
+        $this->link = $link;
 
         return $this;
     }

@@ -22,7 +22,7 @@ class LogoCrudController extends AbstractCrudController
     {
         return [
             TextField::new('name'),
-            TextField::new('color'),
+            TextField::new('link'),
             TextField::new('imageFile')->setFormType(VichImageType::class)->hideOnIndex(),
             ImageField::new('svg')->setBasePath('/uploads/logos')->onlyOnIndex(),
         ];

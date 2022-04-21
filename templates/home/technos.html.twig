@@ -5,9 +5,9 @@
 
             <p class="card__text--technos__body">{{ featured.body }}</p>
             {% for l in featured.logos %}
-                <img class="card__text__logo {{ l.name }}" src="{{ vich_uploader_asset(l, 'imageFile') }}"
-                     style="color:{{ l
-                     .color }}">
+                <a class="card__text__logo" href="{{ l.link }}" target="_blank"><img {{ l.name }}" src="{{ vich_uploader_asset(l,
+                        'imageFile')
+            }}"></a>
             {% endfor %}
         </div>
         <img class="card__img" src="{{ vich_uploader_asset(featured, 'imageFile') }}" alt="Drawing of programming man">
