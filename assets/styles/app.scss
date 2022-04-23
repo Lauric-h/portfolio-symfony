@@ -202,7 +202,7 @@ h2::after {
 .Ghost { fill: #738A94 }
 
 /* footer */
-i {
+.footer__icon {
     color: red;
 }
 
@@ -213,13 +213,13 @@ i {
 /* =======================
         Layout
 ==========================*/
-.container {
+.ctn {
     display: grid;
     grid-template-columns: 10% 1fr 10%;
     grid-gap: 1em;
 }
 
-.container > * {
+.ctn > * {
     grid-column: 2 / 3;
 }
 
@@ -317,6 +317,28 @@ footer .navbar {
 }
 
 /* =======================
+        CONTACT PAGE
+==========================*/
+
+.cta--contact {
+    width: 100%;
+}
+
+.socials {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.socials__link {
+    margin-bottom: 1em;
+}
+
+.socials__logo {
+    color: #fff;
+}
+
+/* =======================
         HOVER STATES
 ==========================*/
 
@@ -369,10 +391,13 @@ footer .navbar {
     transform: scale(1.05);
 }
 
+.socials__logo:active,
+.socials__logo:hover,
 .card__text__link:active,
 .card__text__link:hover {
     color: #1B2735;
 }
+
 
 /* =======================
         MEDIA QUERIES
@@ -422,7 +447,13 @@ footer .navbar {
     .card__img {
         align-self: center;
     }
-
+    .container--contact {
+        width: 50%;
+        margin: 2em auto;
+    }
+    .socials {
+        flex-direction: row;
+    }
     .footer__text {
         grid-column: 1 / -1;
     }
@@ -455,7 +486,12 @@ footer .navbar {
     .nav__link__text {
         font-size: 2rem;
     }
+    .cta--back {
+        width: 200px;
+    }
 }
+
+
 
 /* =======================
         BACKGROUND
